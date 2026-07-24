@@ -1,0 +1,18 @@
+# FastAPI service image. Model artifacts are NOT baked into this image --
+# they're mounted from the host's ./models directory at runtime (see
+# docker-compose.yml). This mirrors real deployments, where a training
+# job and a serving image are separate concerns: you don't want to
+# rebuild and redeploy the whole API image just because a new model
+# version was trained.
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY features.py model_registry.py monitoring.py api.py ./
+
+EXPOSE 8000
+
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]

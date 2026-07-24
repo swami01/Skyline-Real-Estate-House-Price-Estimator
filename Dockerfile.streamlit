@@ -1,0 +1,18 @@
+# Streamlit client image. Deliberately does NOT copy features.py,
+# model_registry.py, or any model artifacts -- this container never
+# touches the model directly, only talks to the api service over HTTP.
+# That's the whole point of the architecture: this image could be
+# rebuilt, redeployed, or replaced by a totally different frontend
+# without anything on the API side changing.
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app.py ./
+
+EXPOSE 8501
+
+CMD ["streamlit", "run", "app.py", "--server.address=0.0.0.0", "--server.port=8501"]

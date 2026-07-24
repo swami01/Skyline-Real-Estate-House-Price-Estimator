@@ -1,0 +1,31 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Model registry (versions/, registry.json, production.json) AND
+      # the monitoring database (models/monitoring.db) live on the host
+      # and are mounted in, not baked into the image. Retrain on the
+      # host with `python3 train.py`, and the running container picks
+      # up the new version on its next restart -- no image rebuild
+      # needed.
+      - ./models:/app/models
+    restart: unless-stopped
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    ports:
+      - "8501:8501"
+    environment:
+      # Inside the Docker network, services reach each other by service
+      # name -- "api", not "localhost". This is the one line that
+      # changes between local (non-Docker) runs and this compose setup.
+      - HOUSE_PRICE_API_URL=http://api:8000
+    depends_on:
+      - api
+    restart: unless-stopped
