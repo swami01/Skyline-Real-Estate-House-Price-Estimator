@@ -1,0 +1,11 @@
+data/
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+models/monitoring.db
+.streamlit/secrets.toml
+.DS_Store
+.vscode/
+.idea/
