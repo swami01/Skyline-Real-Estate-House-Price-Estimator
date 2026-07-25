@@ -60,7 +60,7 @@ OCEAN_OPTIONS = ["NEAR BAY", "<1H OCEAN", "INLAND", "NEAR OCEAN", "ISLAND"]
 
 def check_health():
     try:
-        r = requests.get(f"{API_URL}/health", timeout=3)
+        r = requests.get(f"{API_URL}/health", timeout=60)
         return r.json()
     except requests.exceptions.RequestException:
         return None
@@ -122,7 +122,7 @@ with right:
             "ocean_proximity": ocean_proximity,
         }
         try:
-            resp = requests.post(f"{API_URL}/predict", json=payload, timeout=5)
+            resp = requests.post(f"{API_URL}/predict", json=payload, timeout=60)
         except requests.exceptions.RequestException as e:
             st.error(f"Couldn't reach the API: {e}")
         else:
