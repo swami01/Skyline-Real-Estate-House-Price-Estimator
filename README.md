@@ -2,6 +2,15 @@
 
 
 
+**[Live Demo]([https://fraud-radar-swami.streamlit.app](https://skyline-real-estate-house-price-estimator.streamlit.app/))**
+
+![Fraud Radar demo](fraud_detection/assets/demo1.png)
+![Fraud Radar demo](fraud_detection/assets/demo2.png)
+![Fraud Radar demo](fraud_detection/assets/demo3.png)
+![Fraud Radar demo](fraud_detection/assets/demo4.png)
+![Fraud Radar demo](fraud_detection/assets/demo5.png)
+![Fraud Radar demo](fraud_detection/assets/demo6.png)
+
 ## Project structure
 
 ```
