@@ -12,6 +12,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY features.py model_registry.py monitoring.py api.py ./
+COPY models/ ./models/
 
 EXPOSE 8000
 
