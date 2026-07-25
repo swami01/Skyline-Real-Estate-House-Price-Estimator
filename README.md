@@ -2,7 +2,7 @@
 
 
 
-**[Live Demo]([https://skyline-real-estate-house-price-estimator.streamlit.app/))**
+**[Live Demo]([https://skyline-real-estate-house-price-estimator.streamlit.app/)**
 
 ![Fraud Radar demo](assets/demo1.png)
 ![Fraud Radar demo](assets/demo2.png)
