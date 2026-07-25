@@ -70,10 +70,20 @@ health = check_health()
 with st.sidebar:
     st.markdown("### API status")
     if health is None:
-    st.error(f"Can't reach the API at {API_URL}. Is it running?\n\n`uvicorn api:app --reload --port 8000`")
+        st.error(f"Can't reach the API at {API_URL}. Is it running?\n\n`uvicorn api:app --reload --port 8000`")
     elif health.get("production"):
         st.success(f"Connected — {API_URL}")
-        ...
+        try:
+            meta = requests.get(f"{API_URL}/metadata", timeout=60).json()
+            st.markdown("### Model info")
+            st.write(f"**Model:** {meta['model_name']}")
+            st.write(f"**Trained on:** {meta['n_train']:,} districts")
+            st.write(f"**Tested on:** {meta['n_test']:,} districts")
+            st.markdown("### Held-out test metrics")
+            for k, v in meta["test_metrics"].items():
+                st.write(f"**{k.upper()}:** {v:,.3f}")
+        except requests.exceptions.RequestException:
+            pass
     else:
         st.warning("API is up but no trained model found. Run `python3 train.py` first.")
 
