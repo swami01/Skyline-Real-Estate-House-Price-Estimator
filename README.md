@@ -1,6 +1,7 @@
-![Uploading House price predictor.gif…]()
+
 # Skyline-Real-Estate-House-Price-Estimator — API + Streamlit
 
+<img width="800" height="378" alt="House price predictor" src="https://github.com/user-attachments/assets/407222ba-f1ca-4011-a95f-186520a9d342" />
 
 
 **[Live Demo](https://skyline-real-estate-house-price-estimator.streamlit.app/)**
